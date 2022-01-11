@@ -1,8 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import Stat from './Stat';
 import Profile from './Profile';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  container:{
+    display:'flex',
+    justifyContent:'center'
+  }
+}));
 
 const Home = (props) => {
+  const classes = useStyles();
   const [data, setData] = useState("");
   const [meta, setMeta] = useState();
   const [stats, setStats] = useState();
@@ -23,12 +32,12 @@ const Home = (props) => {
         console.log(data.data.metadata);
         setMeta(data.data.metadata)
         console.log(data.data.stats);
-        setMeta(data.data.stats)
+        setStats(data.data.stats)
     }
   }, [data]);
 
   return (
-    <div>
+    <div className={classes.container}>
       <Profile metadata={meta}/>
       <Stat stats={stats}/>
     </div>
